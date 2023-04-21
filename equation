@@ -1,0 +1,20 @@
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Diode Equation Per Sourcing Current:</th>
+      <th>Diode GPIO</th>
+      <th>Diode PCH</th>
+      <th>Diode NAC</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>Diode Equation @ 170µA:</td>
+      <td>-602.23Vbe + 453.53</td>
+      <td>-550.84Vbe + 404.09</td>
+      <td>-602.29Vbe + 453.58</td>
+    </tr>
+  </tbody>
+</table>
