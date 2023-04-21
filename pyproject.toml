@@ -11,7 +11,12 @@ python = "~3.11"
 pyinstaller = "^5.9.0"
 pyqt5 = "^5.15.9"
 pandas = "^1.5.3"
+openpyxl = "^3.1.2"
+lxml = "^4.9.2"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.2.2"
 
 [build-system]
 requires = ["poetry-core"]
