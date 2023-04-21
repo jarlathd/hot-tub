@@ -105,12 +105,12 @@
             <UpperTolerance>99.0</UpperTolerance>
             <LowerTolerance>99.0</LowerTolerance>
             <Channel>1</Channel>
-            <Ideality>1.0115</Ideality>
+            <Ideality>1.0126</Ideality>
             <EarlyVoltage>0</EarlyVoltage>
             <TemperatureOffset>0</TemperatureOffset>
             <BaseVoltageOffset>0</BaseVoltageOffset>
             <EmitterCurrent1>30</EmitterCurrent1>
-            <EmitterCurrent2>90</EmitterCurrent2>
+            <EmitterCurrent2>110</EmitterCurrent2>
             <EmitterCurrent3>170</EmitterCurrent3>
             <EquationSelectBits>false</EquationSelectBits>
             <ExtendedEquationSelectBits>true</ExtendedEquationSelectBits>
@@ -122,13 +122,13 @@
             <UpperTolerance>99.0</UpperTolerance>
             <LowerTolerance>99.0</LowerTolerance>
             <Channel>5</Channel>
-            <Ideality>1.0114</Ideality>
+            <Ideality>1.0129</Ideality>
             <EarlyVoltage>0</EarlyVoltage>
             <TemperatureOffset>0</TemperatureOffset>
             <BaseVoltageOffset>0</BaseVoltageOffset>
             <EmitterCurrent1>30</EmitterCurrent1>
-            <EmitterCurrent2>90</EmitterCurrent2>
-            <EmitterCurrent3>150</EmitterCurrent3>
+            <EmitterCurrent2>110</EmitterCurrent2>
+            <EmitterCurrent3>170</EmitterCurrent3>
             <EquationSelectBits>false</EquationSelectBits>
             <ExtendedEquationSelectBits>true</ExtendedEquationSelectBits>
             <BaseLeakageCompensation>true</BaseLeakageCompensation>
