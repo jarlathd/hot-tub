@@ -11,7 +11,8 @@ def read_soc_file(repo_path):
             return socfile.read()
     return None
 
-def get_tdau_channel(socfile):
+def get_tdau_channel(repo_path):
+    socfile = read_soc_file(repo_path)
     matches = re.findall(r'Resource TDAU\n\s*{\n\s*(.*?)\n\s*}', socfile, re.DOTALL)
 
     tdau_dict = {}
@@ -40,7 +41,9 @@ def extract_dataframe(df, keyword):
     result.dropna(axis='columns', inplace=True)
     return result
 
-def get_diodes(df):
+def get_diodes(tb_path):
+    df_summary = read_thermal_bath_summary(tb_path)
+    df = extract_dataframe(df_summary, 'Diode Equation Per Sourcing Current')
     diodes = df.columns.tolist()
     diodes.pop(0)
     diodes = [i.strip('Diode ') for i in diodes]
@@ -64,8 +67,7 @@ def get_ncurrent_ideality(df, diode, temp):
 
 def create_diode_temp_dict(repo_path, tb_path, diode, temp, map):
     tdau = map[diode]
-    socfile = read_soc_file(repo_path)
-    tdau_channel_dict= get_tdau_channel(socfile)
+    tdau_channel_dict = get_tdau_channel(repo_path)
     channel = tdau_channel_dict[tdau]
 
     df_summary = read_thermal_bath_summary(tb_path)
