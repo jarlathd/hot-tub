@@ -4,6 +4,7 @@ Gets data from .soc and Thermal Bath file
 import glob
 import re
 import pandas as pd
+from itertools import chain
 
 def read_soc_file(repo_path):
     for file_path in glob.iglob(f'{repo_path}\\**\\*.soc', recursive=True):
@@ -27,6 +28,12 @@ def get_tdau_channel(repo_path):
     
     return tdau_dict
 
+def get_product_name(tb_path):
+    df = pd.read_excel(tb_path, sheet_name='Info')
+    df.columns = range(df.shape[1])
+    product = df.iloc[5, 1].replace(" ", "_")
+    return product
+
 def read_thermal_bath_summary(tb_path):
     summary_df = pd.read_excel(tb_path, sheet_name='Summary')
     return summary_df
@@ -49,6 +56,15 @@ def get_diodes(tb_path):
     diodes = [i.strip('Diode ') for i in diodes]
     return diodes
 
+def get_temps(tb_path):
+    df_summary = read_thermal_bath_summary(tb_path)
+    df = extract_dataframe(df_summary, '3-Currents')
+    temps = df.iloc[:,[1]].values.tolist()
+    temps = sorted(set(sum(temps, [])))
+    SDS_temps = [i for i in temps if i <= 0]
+    SDT_temps = [i for i in temps if i > 0]
+    return SDS_temps, SDT_temps
+
 def get_slope(df, diode):
     s = df.filter(regex=diode)
     equation = s.values[0]
@@ -65,8 +81,8 @@ def get_ncurrent_ideality(df, diode, temp):
     ncurrents = [re.sub(r'\D', '', value) for value in ncurrents]
     return ncurrents, ideality
 
-def create_diode_temp_dict(repo_path, tb_path, diode, temp, map):
-    tdau = map[diode]
+def create_diode_temp_dict(repo_path, tb_path, tdau, temp, map):
+    diode = map[tdau]
     tdau_channel_dict = get_tdau_channel(repo_path)
     channel = tdau_channel_dict[tdau]
 
@@ -86,11 +102,11 @@ def create_diode_temp_dict(repo_path, tb_path, diode, temp, map):
     
     return tdau_data
 
-def create_diode_temp_dict_list(temps, diodes, soc_path, tb_path, diode_to_tdau_map):
+def create_diode_temp_dict_list(temps, tdaus, soc_path, tb_path, tdau_diode_map):
     tdau_data_wrapped = []
     for temp in temps:
-        for diode in diodes:
-                tdau_data = create_diode_temp_dict(soc_path, tb_path, diode, temp, diode_to_tdau_map)
+        for tdau in tdaus:
+                tdau_data = create_diode_temp_dict(soc_path, tb_path, tdau, temp, tdau_diode_map)
                 tdau_data_wrapped.append(tdau_data)
     return tdau_data_wrapped
 

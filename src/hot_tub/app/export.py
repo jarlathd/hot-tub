@@ -42,7 +42,7 @@ def add_CARD_subelement(root):
 
 def add_DIODE_subelement(root, data_dict):
     nroot = ET.SubElement(root, 'Diode')
-    ET.SubElement(nroot, 'DiodeName').text = str(data_dict['diode'])
+    ET.SubElement(nroot, 'DiodeName').text = str(data_dict['tdau'])
     ET.SubElement(nroot, 'UpperTolerance').text = '99.0'
     ET.SubElement(nroot, 'LowerTolerance').text = '99.0'
     ET.SubElement(nroot, 'Channel').text = str(data_dict['channel'])
