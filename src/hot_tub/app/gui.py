@@ -36,16 +36,16 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(central_widget)
     
     def select_repo(self):
-        #file_dialog = QFileDialog()
-        #file_dialog.setFileMode(QFileDialog.Directory) # set file mode to directory only
-        #self.repo_path = file_dialog.getExistingDirectory(self, 'Select Repository Folder')
-        self.repo_path = "C:/Users/jarlathd/source/repos/grr-sort"
+        file_dialog = QFileDialog()
+        file_dialog.setFileMode(QFileDialog.Directory) # set file mode to directory only
+        self.repo_path = file_dialog.getExistingDirectory(self, 'Select Repository Folder')
+        #self.repo_path = "C:/Users/jarlathd/source/repos/grr-sort"
         print('Selected Repository Folder:', self.repo_path)
 
     def select_thermal(self):
-        #file_dialog = QFileDialog()
-        #self.thermal_path, _ = file_dialog.getOpenFileName(self, 'Select Thermal Bath File', '', 'Xlsx files (*.xlsx)')
-        self.thermal_path = "C:/Users/jarlathd/source/product_data/grr_data/I310001EN_GRR-A0_PDE-PG_10-units_V=0.xlsx"
+        file_dialog = QFileDialog()
+        self.thermal_path, _ = file_dialog.getOpenFileName(self, 'Select Thermal Bath File', '', 'Xlsx files (*.xlsx)')
+        #self.thermal_path = "C:/Users/jarlathd/source/product_data/grr_data/I310001EN_GRR-A0_PDE-PG_10-units_V=0.xlsx"
         print('Selected Thermal Bath File:', self.thermal_path)
 
         if self.thermal_path:
